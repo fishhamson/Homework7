@@ -89,25 +89,78 @@ document.querySelector('#btn-result6').onclick = () => {
 }
 
 function selectionSort(inputArr) {
-    for(var i = 0; i < count; i++) {
+    for (var i = 0; i < count; i++) {
         var min = i;
-        for(var j = i+1; j < count; j++){
-            if(inputArr[j] < inputArr[min]) {
-                min=j; 
+        for (var j = i + 1; j < count; j++) {
+            if (inputArr[j] < inputArr[min]) {
+                min = j;
             }
         }
         if (min != i) {
-            var tmp = inputArr[i]; 
+            var tmp = inputArr[i];
             inputArr[i] = inputArr[min];
-            inputArr[min] = tmp;      
+            inputArr[min] = tmp;
         }
     }
 }
 
 document.querySelector('#btn-result7').onclick = () => {
-    debugger
-    var arr_result7 = {...arr}
+    var arr_result7 = { ...arr }
     selectionSort(arr_result7)
     document.querySelector('#txtResult7').innerHTML = outputArray(arr_result7);
-    console.log(arr_result7)
 }
+
+function isPrime(n) {
+    if (n <= 1) {
+        return 0;
+    }
+    for (let i = 2; i <= Math.sqrt(n); i++) {
+        if (n % i === 0) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+document.querySelector('#btn-result8').onclick = () => {
+    var arr_result8 = { ...arr }
+    var i = 0
+    for (i; i < count; i++) {
+        if (isPrime(arr_result8[i]) === 1)
+            break
+    }
+    document.querySelector('#txtResult8').innerHTML = arr_result8[i];
+}
+
+document.querySelector('#btn-result9').onclick = () => {
+    var arr_result9 = { ...arr }
+    var count__ = 0
+    for (var i = 0; i < count; i++) {
+        if (Number.isInteger(arr_result9[i]) === true) {
+            count__++
+        }
+    }
+    document.querySelector('#txtResult9').innerHTML = 'Số nguyên là: ' + count__;
+}
+
+document.querySelector('#btn-result10').onclick = () => {
+    debugger
+    var arr_result10 = { ...arr }
+    var tmp = ' < '
+    var tmp_ = ' > '
+    var count_pos = 0
+    var count_neg = 0
+    for (var i = 0; i < count; i++) {
+        if (arr_result10[i] > 0) {
+            count_pos++
+        } else
+            count_neg++
+    }
+    if (count_neg > count_pos) {
+        return document.querySelector('#txtResult10').innerHTML = 'Số âm ' + tmp_ + 'Số dương';
+    }
+    if (count_neg < count_pos)
+        return document.querySelector('#txtResult10').innerHTML = 'Số âm ' + tmp + 'Số dương';
+    if (count_neg === count_pos)
+        return document.querySelector('#txtResult10').innerHTML = 'Số âm ' + ' = ' + 'Số dương';
+}   
